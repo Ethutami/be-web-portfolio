@@ -7,8 +7,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio"
+    "prisma:migrate": "prisma migrate dev"
   },
   "author": "ethutami",
   "license": "ISC",
