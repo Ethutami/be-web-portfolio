@@ -56,5 +56,4 @@ export async function GetPortfolioByIdServices(params: number) {
     } catch (error) {
         throw error
     }
-
 }

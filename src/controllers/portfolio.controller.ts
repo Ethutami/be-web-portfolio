@@ -42,9 +42,4 @@ export async function GetPortfolioByIdController(req: Request, res: Response, ne
     } catch (error) {
         next(error)
     }
-
-
-
-
-
 }

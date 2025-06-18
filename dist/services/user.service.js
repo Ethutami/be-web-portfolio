@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetAllUserService = GetAllUserService;
 exports.GetContactService = GetContactService;
+exports.GetUserByIdServices = GetUserByIdServices;
 const db_1 = __importDefault(require("../config/db"));
 function GetAllUserService() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -29,5 +30,20 @@ function GetContactService() {
         if (!contact)
             throw new Error("No contact yet");
         return contact;
+    });
+}
+function GetUserByIdServices(params) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const user = yield db_1.default.users.findUnique({
+                where: { id: params }
+            });
+            if (!user)
+                throw new Error(`User not found`);
+            return user;
+        }
+        catch (error) {
+            throw error;
+        }
     });
 }

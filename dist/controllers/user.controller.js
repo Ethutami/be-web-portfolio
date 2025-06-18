@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetAllUserController = GetAllUserController;
 exports.GetContactController = GetContactController;
+exports.GetUserByIdController = GetUserByIdController;
 const user_service_1 = require("../services/user.service");
 function GetAllUserController(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -37,6 +38,22 @@ function GetContactController(req, res, next) {
         }
         catch (err) {
             next(err);
+        }
+    });
+}
+function GetUserByIdController(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        var _a;
+        try {
+            const userId = parseInt((_a = req.params) === null || _a === void 0 ? void 0 : _a.id, 10);
+            const data = yield (0, user_service_1.GetUserByIdServices)(userId);
+            res.status(200).send({
+                success: true,
+                data
+            });
+        }
+        catch (error) {
+            next(error);
         }
     });
 }
