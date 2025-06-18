@@ -4,12 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const user_router_1 = __importDefault(require("./routers/user.router"));
 const experience_router_1 = __importDefault(require("./routers/experience.router"));
 const portfolio_router_1 = __importDefault(require("./routers/portfolio.router"));
-const port = 8010;
+const config_1 = require("./config");
+const port = config_1.PORT || 8010;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)({
+    origin: config_1.FE_URL
+}));
 app.get('/', (req, res) => {
     res.status(200).json('Welcome to Web portofolio api');
 });

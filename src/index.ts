@@ -1,12 +1,17 @@
 import express, { Application, Request, Response, NextFunction } from "express";
+import cors from 'cors'
 import UserRouter from './routers/user.router'
 import ExperienceRouter from './routers/experience.router'
 import PortfolioRouter from './routers/portfolio.router'
+import { FE_URL, PORT } from "./config";
 
-const port = 8010;
+const port = PORT || 8010;
 const app: Application = express();
 
 app.use(express.json());
+app.use(cors({
+    origin: FE_URL
+}))
 
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json('Welcome to Web portofolio api')
