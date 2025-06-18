@@ -14,7 +14,7 @@ app.use(cors({
 }))
 
 app.get('/', (req: Request, res: Response) => {
-    res.status(200).json('Welcome to Web portofolio api')
+    res.status(200).json('Welcome to Web portfolio api')
 })
 
 app.use("/api/users", UserRouter);

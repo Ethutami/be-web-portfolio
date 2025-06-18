@@ -16,7 +16,7 @@ app.use((0, cors_1.default)({
     origin: config_1.FE_URL
 }));
 app.get('/', (req, res) => {
-    res.status(200).json('Welcome to Web portofolio api');
+    res.status(200).json('Welcome to Web portfolio api');
 });
 app.use("/api/users", user_router_1.default);
 app.use("/api/experiences", experience_router_1.default);

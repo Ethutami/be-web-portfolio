@@ -44,8 +44,9 @@ function SearchPortfoliosController(req, res, next) {
 }
 function GetPortfolioByIdController(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
+        var _a;
         try {
-            const portfolioId = parseInt(req.params.id, 10);
+            const portfolioId = parseInt((_a = req.params) === null || _a === void 0 ? void 0 : _a.id, 10);
             const data = yield (0, portfolio_service_1.GetPortfolioByIdServices)(portfolioId);
             res.status(200).send({
                 success: true,
