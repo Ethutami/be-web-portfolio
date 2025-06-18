@@ -37,3 +37,24 @@ export async function SearchPortfoliosService(params: ISearchPortfolio) {
         throw error
     }
 }
+
+export async function GetPortfolioByIdServices(params: number) {
+    try {
+        const portfolio = await prisma.portfolios.findUnique({
+            where: { id: params },
+            include: {
+                portfolio_collaborators: {
+                    include: {
+                        users: true, // This will pull user details from the users table
+                    },
+                },
+            },
+        });
+
+        if (!portfolio) throw new Error(`portfolios not found`)
+        return portfolio
+    } catch (error) {
+        throw error
+    }
+
+}

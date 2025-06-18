@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetPortfoliosService = GetPortfoliosService;
 exports.SearchPortfoliosService = SearchPortfoliosService;
+exports.GetPortfolioByIdServices = GetPortfolioByIdServices;
 const db_1 = __importDefault(require("../config/db"));
 function GetPortfoliosService() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -44,6 +45,28 @@ function SearchPortfoliosService(params) {
             if (!portfolios)
                 throw new Error(`portfolios not found`);
             return portfolios;
+        }
+        catch (error) {
+            throw error;
+        }
+    });
+}
+function GetPortfolioByIdServices(params) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const portfolio = yield db_1.default.portfolios.findUnique({
+                where: { id: params },
+                include: {
+                    portfolio_collaborators: {
+                        include: {
+                            users: true, // This will pull user details from the users table
+                        },
+                    },
+                },
+            });
+            if (!portfolio)
+                throw new Error(`portfolios not found`);
+            return portfolio;
         }
         catch (error) {
             throw error;

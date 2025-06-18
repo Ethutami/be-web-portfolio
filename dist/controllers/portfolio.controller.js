@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetPortfoliosController = GetPortfoliosController;
 exports.SearchPortfoliosController = SearchPortfoliosController;
+exports.GetPortfolioByIdController = GetPortfolioByIdController;
 const portfolio_service_1 = require("../services/portfolio.service");
 function GetPortfoliosController(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -31,6 +32,21 @@ function SearchPortfoliosController(req, res, next) {
         try {
             const searchParams = req.query;
             const data = yield (0, portfolio_service_1.SearchPortfoliosService)(searchParams);
+            res.status(200).send({
+                success: true,
+                data
+            });
+        }
+        catch (error) {
+            next(error);
+        }
+    });
+}
+function GetPortfolioByIdController(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const portfolioId = parseInt(req.params.id, 10);
+            const data = yield (0, portfolio_service_1.GetPortfolioByIdServices)(portfolioId);
             res.status(200).send({
                 success: true,
                 data

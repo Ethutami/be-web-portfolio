@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { GetPortfoliosService, SearchPortfoliosService } from "../services/portfolio.service";
+import { GetPortfolioByIdServices, GetPortfoliosService, SearchPortfoliosService } from "../services/portfolio.service";
 import { ISearchPortfolio } from "../interfaces/portfolio.interface";
 
 export async function GetPortfoliosController(req: Request, res: Response, next: NextFunction
@@ -28,5 +28,23 @@ export async function SearchPortfoliosController(req: Request, res: Response, ne
     } catch (error) {
         next(error)
     }
+
+}
+export async function GetPortfolioByIdController(req: Request, res: Response, next: NextFunction) {
+    try {
+        const portfolioId = parseInt(req.params?.id, 10);
+        const data = await GetPortfolioByIdServices(portfolioId)
+
+        res.status(200).send({
+            success: true,
+            data
+        })
+    } catch (error) {
+        next(error)
+    }
+
+
+
+
 
 }

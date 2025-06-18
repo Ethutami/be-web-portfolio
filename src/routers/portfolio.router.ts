@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { GetPortfoliosController, SearchPortfoliosController } from "../controllers/portfolio.controller";
+import { GetPortfolioByIdController, GetPortfoliosController, SearchPortfoliosController } from "../controllers/portfolio.controller";
 
 const router = Router();
 
 router.get("/", GetPortfoliosController);
 router.get("/search", SearchPortfoliosController);
+router.get("/:id", GetPortfolioByIdController)
 
 export default router;
