@@ -18,7 +18,7 @@ exports.GetPortfolioByIdServices = GetPortfolioByIdServices;
 const db_1 = __importDefault(require("../config/db"));
 function GetPortfoliosService() {
     return __awaiter(this, void 0, void 0, function* () {
-        const portfolios = yield db_1.default.experiences.findMany();
+        const portfolios = yield db_1.default.portfolios.findMany();
         if (!portfolios)
             throw new Error("No portfolios yet");
         return portfolios;
