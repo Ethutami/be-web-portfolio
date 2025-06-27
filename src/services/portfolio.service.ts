@@ -2,7 +2,7 @@ import prisma from "../config/db";
 import { ISearchPortfolio } from "../interfaces/portfolio.interface";
 
 export async function GetPortfoliosService() {
-    const portfolios = await prisma.experiences.findMany();
+    const portfolios = await prisma.portfolios.findMany();
     if (!portfolios) throw new Error("No portfolios yet");
     return portfolios;
 }
