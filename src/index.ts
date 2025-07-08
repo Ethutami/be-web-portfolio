@@ -11,16 +11,10 @@ const app: Application = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: FE_URL
-}))
-
-app.use(
-    cors({
-        origin: `${WEB_PRODUCTION_URL}`, // Allow requests from this origin
-        methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // Specify allowed methods
-        credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-    })
-);
+    origin: [`${FE_URL}`, `${WEB_PRODUCTION_URL}`],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    credentials: true
+}));
 
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json('Welcome to Web portfolio api')
