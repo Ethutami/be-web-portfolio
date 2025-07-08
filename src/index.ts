@@ -3,15 +3,24 @@ import cors from 'cors'
 import UserRouter from './routers/user.router'
 import ExperienceRouter from './routers/experience.router'
 import PortfolioRouter from './routers/portfolio.router'
-import { FE_URL, PORT } from "./config";
+import { FE_URL, PORT, WEB_PRODUCTION_URL } from "./config";
 
 const port = PORT || 8010;
 const app: Application = express();
 
 app.use(express.json());
+
 app.use(cors({
     origin: FE_URL
 }))
+
+app.use(
+    cors({
+        origin: `${WEB_PRODUCTION_URL}`, // Allow requests from this origin
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // Specify allowed methods
+        credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    })
+);
 
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json('Welcome to Web portfolio api')
