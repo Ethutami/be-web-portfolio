@@ -13,7 +13,15 @@ const port = config_1.PORT || 8010;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: [`${config_1.FE_URL}`, `${config_1.WEB_PRODUCTION_URL}`],
+    origin: (origin, callback) => {
+        const allowedOrigins = [config_1.FE_URL, config_1.WEB_PRODUCTION_URL];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true
 }));
