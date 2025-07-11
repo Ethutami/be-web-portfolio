@@ -25,7 +25,6 @@ app.use((0, cors_1.default)({
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true
 }));
-app.options('*', (0, cors_1.default)());
 app.get('/', (req, res) => {
     res.status(200).json('Welcome to Web portfolio api');
 });

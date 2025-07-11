@@ -24,7 +24,6 @@ app.use(cors({
     credentials: true
 }));
 
-app.options('*', cors());
 
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json('Welcome to Web portfolio api')
