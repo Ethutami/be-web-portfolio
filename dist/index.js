@@ -13,7 +13,7 @@ const port = config_1.PORT || 8010;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: 'https://ethika-utami.vercel.app'
+    origin: config_1.WEB_PRODUCTION_URL
 }));
 app.use((0, cors_1.default)());
 app.get('/', (req, res) => {
