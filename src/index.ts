@@ -11,19 +11,10 @@ const app: Application = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: (origin, callback) => {
-        const allowedOrigins = [FE_URL, WEB_PRODUCTION_URL];
-
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    credentials: true
+    origin: 'https://ethika-utami.vercel.app'
 }));
 
+app.use(cors());
 
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json('Welcome to Web portfolio api')
