@@ -10,8 +10,20 @@ const app: Application = express();
 
 app.use(express.json());
 
+const allowedOrigins = [
+    'https://your-production-site.com',
+    'http://localhost:3000'
+];
+
 app.use(cors({
-    origin: 'https://ethika-utami.vercel.app'
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true // optional, for cookies
 }));
 
 app.use(cors());

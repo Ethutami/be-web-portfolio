@@ -12,8 +12,20 @@ const config_1 = require("./config");
 const port = config_1.PORT || 8010;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+const allowedOrigins = [
+    'https://your-production-site.com',
+    'http://localhost:3000'
+];
 app.use((0, cors_1.default)({
-    origin: 'https://ethika-utami.vercel.app'
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true // optional, for cookies
 }));
 app.use((0, cors_1.default)());
 app.get('/', (req, res) => {
