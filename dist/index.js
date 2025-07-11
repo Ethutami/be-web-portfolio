@@ -24,7 +24,7 @@ app.use((0, cors_1.default)({
     },
     credentials: true // optional, for cookies
 }));
-app.use((0, cors_1.default)());
+// app.use(cors());
 app.get('/', (req, res) => {
     res.status(200).json('Welcome to Web portfolio api');
 });
