@@ -10,10 +10,7 @@ const app: Application = express();
 
 app.use(express.json());
 
-const allowedOrigins = [
-    'https://your-production-site.com',
-    'http://localhost:3000'
-];
+const allowedOrigins = [FE_URL, WEB_PRODUCTION_URL];
 
 app.use(cors({
     origin: function (origin, callback) {
