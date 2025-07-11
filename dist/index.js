@@ -12,7 +12,7 @@ const config_1 = require("./config");
 const port = config_1.PORT || 8010;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-const allowedOrigins = [config_1.FE_URL, config_1.WEB_PRODUCTION_URL];
+const allowedOrigins = [config_1.WEB_PRODUCTION_URL, config_1.FE_URL];
 app.use((0, cors_1.default)({
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
