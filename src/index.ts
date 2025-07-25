@@ -11,7 +11,7 @@ const app: Application = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: `${WEB_PRODUCTION_URL}`
+    origin: 'https://ethika-utami.vercel.app/'
 }));
 
 app.use(cors());
